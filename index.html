@@ -1,0 +1,731 @@
+
+
+<! DOCTYPE html>
+<html>
+<head>
+<title>  Behifa Zanzibar </title>
+<link rel="stylesheet" href="leaflet.css"/>
+<script type="text/javascript" src="leaflet.js"></script>
+<script type="text/javascript" src="script.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.1/dist/leaflet.css"/>
+
+<!--- Slide Bar  --->
+<link rel="stylesheet" href="L.Control.Sidebar.css" />
+
+
+<!--  Border  -->
+<style>
+		.box {
+			background-color: lightgrey;
+			width: 100%;
+			border: 1.5px solid green;
+			padding: 0px;
+			margin: 0px;
+			border-radius: 8px;
+		}
+</style>
+
+
+<div class="box">
+
+<style>
+#map{
+	width: 980px;
+	height: 560px;
+}
+
+</style>
+
+	
+
+	
+
+
+
+			
+		 <!--- Legend -->
+		
+
+		
+		<!--- Slide Bar ---->
+		<style>
+				.lorem {
+					font-style: italic;
+					color: #AAA;
+				}
+
+				body > #sidebar {
+					display: none;
+				}
+		</style>
+<!---- Address bar Behifa Icon --->
+<LINK REL="SHORTCUT ICON"  HREF="images/behifaLg.png">
+
+</head>
+
+<script src="map.geojson"></script>
+
+<body>
+<center>
+<center><h1>Proximity to Hazard and Risk Areas for Floods (Zanzibar City)</h1></center>
+
+<div id="map"></div>
+
+		
+		
+
+					<!-- Load Leaflet from a https CDN, not http. Look for updates at http://leafletjs.com/download.html -->
+					<script src="https://unpkg.com/leaflet@1.0.0-rc.1/dist/leaflet.js"></script>
+					<!-- load jQuery  -->
+					<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+					
+
+					
+					
+					
+					<!-- Load Leaflet from CDN --->
+					  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+					  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+					  crossorigin=""/>
+					  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+					  integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+					  crossorigin=""></script>
+					
+					
+					 <!--- Load Esri Leaflet from CDN --->
+					  <script src="https://unpkg.com/esri-leaflet@2.3.0/dist/esri-leaflet.js"
+					  integrity="sha512-1tScwpjXwwnm6tTva0l0/ZgM3rYNbdyMj5q6RSQMbNX6EUMhYDE3pMRGZaT41zHEvLoWEK7qFEJmZDOoDMU7/Q=="
+					  crossorigin=""></script>
+
+
+<!-- <center><img src="images/behifa02.png"/> <br><input type=button value="Locate me" onclick="map.locate({setView: true, maxZoom: 16})";/> -->
+
+
+
+
+
+
+
+
+
+<script>
+	
+	
+	var map = L.map('map').setView([-6.1680437,39.2212696], 16);
+
+	
+	//https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}
+	//https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}
+	L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png?access_token={accessToken}', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">SUZA</a>, Imagery © <a href="https://www.mapbox.com/">ZMI</a>',
+	maxZoom: 20,
+	id: 'mapbox.streets',
+	accessToken: 'pk.eyJ1IjoiYmluYm9uaXkiLCJhIjoiY2swa2VhdDB0MGl5OTNsbGlnMWduMmd0ZiJ9.XajWTPyAcPtxvcxIVZmg3Q'
+	}).addTo(map);
+	
+	
+	
+	
+	
+	
+	var greenIcon = L.icon({
+	iconUrl: 'images/water.png',
+
+	iconSize:     [28, 40], // size of the icon
+	iconAnchor:   [22, 16], // point of the icon which will correspond to marker's location
+	popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+	});
+	
+	L.marker([-6.171129, 39.222169], {icon: greenIcon}).addTo(map).bindPopup('<b>Mtumwa Jeni lake</b> <div><img style="width:100%" src="images/mwa02.jpg" alt="image" /></div>',
+	{minWidth:256}
+	
+	);
+	
+	
+	
+	var blueIcon = L.icon({
+	iconUrl: 'images/water.png',
+
+	iconSize:     [28, 40], // size of the icon
+	iconAnchor:   [22, 16], // point of the icon which will correspond to marker's location
+	popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+	});
+	
+	L.marker([-6.172698, 39.223266], {icon: blueIcon}).addTo(map).bindPopup('<b>Mwantenga lake</b> <div><img style="width:100%" src="images/mwa01.jpg" alt="image" /></div>',
+	{minWidth:256}
+	);
+	
+	
+	<!--- The Icons ---->
+	var redIcon = L.icon({
+	iconUrl: 'images/daycare.png',
+
+	iconSize:     [28, 40], // size of the icon
+	iconAnchor:   [22, 16], // point of the icon which will correspond to marker's location
+	popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+	});
+	
+	L.marker([-6.165850, 39.219804], {icon: redIcon}).addTo(map).bindPopup('<b>Nyerere School</b> <div><img style="width:100%" src="images/nyerere_skl.jpg" alt="image" /></div>',
+	{minWidth:256}
+	);
+	
+	var redIcon = L.icon({
+	iconUrl: 'images/daycare.png',
+
+	iconSize:     [28, 40], // size of the icon
+	iconAnchor:   [22, 16], // point of the icon which will correspond to marker's location
+	popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+	});
+	
+	L.marker([-6.165793, 39.215657], {icon: redIcon}).addTo(map).bindPopup('<b>Sebleni School</b> <div><img style="width:100%" src="images/skl.jpg" alt="image" /></div>',
+	{minWidth:256}
+	);
+	
+	var pinkIcon = L.icon({
+	iconUrl: 'images/pharmacy.png',
+
+	iconSize:     [28, 40], // size of the icon
+	iconAnchor:   [22, 16], // point of the icon which will correspond to marker's location
+	popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+	});
+	
+	L.marker([-6.163058, 39.216944], {icon: pinkIcon}).addTo(map).bindPopup('<b>Mkele Pharmacy</b> <div><img style="width:100%" src="images/pham.jpg" alt="image" /></div>',
+	{minWidth:256}
+	);
+	
+	
+	
+	
+	L.marker([-6.166108, 39.217898], {icon: blueIcon}).addTo(map).bindPopup('<b>Nyerere lake</b> <div><img style="width:100%" src="images/d03.jpg" alt="image" /></div>',
+	{minWidth:256}
+	
+	);
+	
+	
+		
+		
+		
+		
+		
+				/*Legend specific*/
+				
+		
+			
+			
+			<!--- Starting Here --->
+			
+			//To Create Scale
+			var scale = L.control.scale(); // Creating scale control
+			scale.addTo(map); // Adding scale control to the map
+			
+			
+			
+			
+					
+					<!--- Polygon Here --->
+					<!--- Low Risk Area  Nyerere --->
+					
+					L.polygon([
+						[-6.163148, 39.216097],
+						[-6.162853, 39.216507],
+						[-6.162768, 39.216826],
+						[-6.162719, 39.217258],
+						[-6.162804, 39.217471],
+						[-6.162904, 39.217749],
+						[-6.163085, 39.218026],
+						[-6.163253, 39.218284],
+						[-6.163411, 39.218481],
+						[-6.163477, 39.218737],
+						[-6.163564, 39.219040],
+						[-6.163777, 39.219172],
+						[-6.164165, 39.219364],
+						[-6.164386, 39.219481],
+						[-6.164586, 39.219574],
+						[-6.164863, 39.219672],
+						[-6.165094, 39.219720],
+						[-6.165490, 39.219765],
+						[-6.165850, 39.219804],
+						[-6.166097, 39.219837],
+						[-6.166572, 39.219839],
+						[-6.167035, 39.219781],
+						[-6.167373, 39.219719],
+						[-6.167716, 39.219696],
+						[-6.167932, 39.219624],
+						[-6.168316, 39.219517],
+						[-6.168539, 39.219463],
+						[-6.168891, 39.219406],
+						[-6.169180, 39.219337],
+						[-6.169451, 39.219292],
+						[-6.169782, 39.219214],
+						[-6.169952, 39.219157],
+						[-6.170116, 39.218890],
+						[-6.170119, 39.218643],
+						[-6.170056, 39.218447],
+						[-6.170023, 39.218208],
+						[-6.169911, 39.217933],
+						[-6.169661, 39.217543],
+						[-6.169392, 39.217320],
+						[-6.169108, 39.217201],
+						[-6.168670, 39.216960],
+						[-6.168272, 39.216798],
+						[-6.167691, 39.216402],
+						[-6.167208, 39.216129],
+						[-6.166609, 39.215828],
+						[-6.166179, 39.215680],
+						[-6.165793, 39.215657],
+						[-6.165371, 39.215729],
+						[-6.164901, 39.215970],
+						[-6.164397, 39.215987],
+						[-6.163830, 39.215998],
+						[-6.163387, 39.215915]
+						
+						], {
+							color: '#93DB70',
+					}).addTo(map).bindPopup("This is Low Risk Area");
+					
+					
+					
+					
+					
+					
+					<!--- Medium Risk Area --->
+					
+					L.polygon([
+						[-6.163120, 39.217402],
+						[-6.163195, 39.217714],
+						[-6.163463, 39.218057],
+						[-6.163549, 39.218332],
+						[-6.163688, 39.218593],
+						[-6.163934, 39.218736],
+						[-6.164275, 39.218833],
+						[-6.164819, 39.219025],
+						[-6.165331, 39.219102],
+						[-6.165886, 39.219179],
+						[-6.166216, 39.219307],
+						[-6.166621, 39.219349],
+						[-6.167186, 39.219390],
+						[-6.167517, 39.219357],
+						[-6.167805, 39.219208],
+						[-6.168254, 39.219062],
+						[-6.168650, 39.219025],
+						[-6.169142, 39.218892],
+						[-6.169496, 39.218783],
+						[-6.169678, 39.218588],
+						[-6.169753, 39.218393],
+						[-6.169710, 39.218089],
+						[-6.169603, 39.217783],
+						[-6.168982, 39.217458],
+						[-6.168264, 39.217284],
+						[-6.167643, 39.217023],
+						[-6.167140, 39.216665],
+						[-6.166584, 39.216369],
+						[-6.165953, 39.216289],
+						[-6.165354, 39.216392],
+						[-6.164979, 39.216701],
+						[-6.164315, 39.216752],
+						[-6.163620, 39.216660],
+						[-6.1635886,39.2163693],
+						[-6.163031, 39.217210]
+						
+						], {
+							color: '#FF7F00',
+					}).addTo(map).bindPopup("This is Medium Risk Area");
+					
+					
+					<!--- High Risk Area --->
+					
+					L.polygon([
+						[-6.169130, 39.218393],
+						[-6.168517, 39.218746],
+						[-6.167839, 39.218671],
+						[-6.167072, 39.218841],
+						[-6.166315, 39.218899],
+						[-6.165657, 39.218601],
+						[-6.164990, 39.218463],
+						[-6.164422, 39.218514],
+						[-6.163904, 39.218366],
+						[-6.163342, 39.217316],
+						[-6.163673, 39.217026],
+						[-6.163971, 39.217037],
+						[-6.164534, 39.217074],
+						[-6.165570, 39.217120],
+						[-6.166050, 39.216746],
+						[-6.166461, 39.216758],
+						[-6.167074, 39.216986],
+						[-6.167586, 39.217360],
+						[-6.168323, 39.217629],
+						[-6.168894, 39.217880]
+						
+						], {
+							color: 'red',
+					}).addTo(map).bindPopup("This is High Risk Area");
+					
+					
+					
+					<!--- Mwantenga Lake --->
+					L.polygon([
+                    [-6.170645, 39.220306],
+                    [-6.170280, 39.220396],
+                    [-6.169707, 39.220776],
+                    [-6.169458, 39.220984],
+                    [-6.169429, 39.221479],
+                    [-6.169481, 39.221900],
+                    [-6.169610, 39.222457],
+                    [-6.169744, 39.222825],
+                    [-6.169830, 39.223215],
+                    [-6.170008, 39.223666],
+                    [-6.170224, 39.223888],
+                    [-6.170859, 39.224161],
+                    [-6.171245, 39.224030],
+                    [-6.171462, 39.223931],
+                    [-6.171742, 39.223805],
+                    [-6.172054, 39.224049],
+                    [-6.172438, 39.224121],
+                    [-6.172750, 39.224184],
+                    [-6.173034, 39.224096],
+                    [-6.173390, 39.224097],
+                    [-6.173770, 39.223924],
+                    [-6.173917, 39.223364],
+                    [-6.173999, 39.223012],
+                    [-6.173838, 39.222563],
+                    [-6.173555, 39.222374],
+                    [-6.173345, 39.222230],
+                    [-6.172800, 39.222044],
+                    [-6.172326, 39.221937],
+                    [-6.172212, 39.221703],
+                    [-6.172189, 39.221400],
+                    [-6.172333, 39.221234],
+                    [-6.172310, 39.220843],
+                    [-6.172136, 39.220490],
+                    [-6.171745, 39.220328],
+                    [-6.171385, 39.220214],
+                    [-6.170988, 39.220229]
+						
+						], {
+							color: '#93DB70',
+					}).addTo(map).bindPopup("This is Low Risk Area");
+					
+					<!--- medium--->
+					L.polygon([
+                    [-6.170692, 39.220569],
+                    [-6.170306, 39.220716],
+                    [-6.169933, 39.220940],
+                    [-6.169756, 39.221147],
+                    [-6.169790, 39.221535],
+                    [-6.169886, 39.221945],
+                    [-6.169953, 39.222387],
+                    [-6.169992, 39.222712],
+                    [-6.170186, 39.222973],
+                    [-6.170363, 39.223440],
+                    [-6.170693, 39.223541],
+                    [-6.171312, 39.223582],
+                    [-6.171549, 39.223479],
+                    [-6.171751, 39.223435],
+                    [-6.171981, 39.223573],
+                    [-6.172450, 39.223887],
+                    [-6.172702, 39.223958],
+                    [-6.172990, 39.223883],
+                    [-6.173306, 39.223819],
+                    [-6.173633, 39.223272],
+                    [-6.173545, 39.223078],
+                    [-6.173661, 39.223101],
+                    [-6.173604, 39.222737],
+                    [-6.173112, 39.222431],
+                    [-6.172597, 39.222277],
+                    [-6.172233, 39.222374],
+                    [-6.172008, 39.222234],
+                    [-6.171877, 39.221975],
+                    [-6.171938, 39.221643],
+                    [-6.172023, 39.221335],
+                    [-6.172044, 39.221067],
+                    [-6.171859, 39.220776],
+                    [-6.171286, 39.220523],
+                    [-6.170924, 39.220607]
+						
+						], {
+							color: '#FF7F00',
+					}).addTo(map).bindPopup("This is Medium Risk Area");
+					
+					L.polygon([
+                    [-6.170712, 39.220931],
+                    [-6.170381, 39.220971],
+                    [-6.170184, 39.221097],
+                    [-6.170060, 39.221330],
+                    [-6.170121, 39.221659],
+                    [-6.170164, 39.221972],
+                    [-6.170234, 39.222329],
+                    [-6.170327, 39.222576],
+                    [-6.170460, 39.222804],
+                    [-6.170737, 39.223175],
+                    [-6.171043, 39.223261],
+                    [-6.171325, 39.223172],
+                    [-6.171616, 39.223109],
+                    [-6.171721, 39.223041],
+                    [-6.171910, 39.223139],
+                    [-6.172442, 39.223669],
+                    [-6.172662, 39.223712],
+                    [-6.172942, 39.223722],
+                    [-6.173222, 39.223678],
+                    [-6.173365, 39.223459],
+                    [-6.173393, 39.223273],
+                    [-6.173351, 39.222902],
+                    [-6.172977, 39.222694],
+                    [-6.172563, 39.222658],
+                    [-6.172155, 39.222728],
+                    [-6.171900, 39.222534],
+                    [-6.171782, 39.222237],
+                    [-6.171755, 39.221764],
+                    [-6.171765, 39.221323],
+                    [-6.171508, 39.220881],
+                    [-6.170988, 39.220865]
+						
+						], {
+							color: 'red',
+					}).addTo(map).bindPopup("This is High Risk Area");
+					
+                    
+                    
+                    <!-- Water Path -->
+
+                    L.polyline([
+                    [-6.170420, 39.217898],
+                    [-6.169678, 39.218125],
+                    [-6.169337, 39.218044],
+                    [-6.168604, 39.218132]
+						
+						], {
+							color: '#007FFF',
+					}).addTo(map).bindPopup("Water Path");
+					
+                    
+                    var circle = L.circle([-6.170420, 39.217898], {
+						color: '#007FFF',
+						fillColor: '#007FFF',
+						fillOpacity: 0.5,
+						radius: 5
+					}).addTo(map).bindPopup('<b>Water way</b> <div><img style="width:100%" src="images/w02.jpg" alt="image" /></div>',
+                        {minWidth:256});
+                        
+                        var circle = L.circle([-6.168604, 39.218132], {
+						color: '#007FFF',
+						fillColor: '#007FFF',
+						fillOpacity: 0.5,
+						radius: 5
+					}).addTo(map).bindPopup('<b>Water way</b> <div><img style="width:100%" src="images/w01.jpg" alt="image" /></div>',
+                        {minWidth:256});
+                        
+                    
+                    <!--- Bwawa --->
+
+                    var riverIcon = L.icon({
+                    iconUrl: 'images/river.png',
+
+                    iconSize:     [28, 40], // size of the icon
+                    iconAnchor:   [22, 16], // point of the icon which will correspond to marker's location
+                    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+                    });
+                    L.marker([-6.171054, 39.217895], {icon: riverIcon}).addTo(map).bindPopup('<b>Swamp</b> <div><img style="width:100%" src="images/w03.jpg" alt="image" /></div>',
+                    {minWidth:256}
+                    );
+
+                    
+                    var riverIcon = L.icon({
+                    iconUrl: 'images/river.png',
+
+                    iconSize:     [28, 40], // size of the icon
+                    iconAnchor:   [22, 16], // point of the icon which will correspond to marker's location
+                    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+                    });
+                    L.marker([-6.173260, 39.220606], {icon: riverIcon}).addTo(map).bindPopup('<b>Swamp</b> <div><img style="width:100%" src="images/m02.jpg" alt="image" /></div>',
+                    {minWidth:256}
+                    );
+
+
+                    var mosqueIcon = L.icon({
+                    iconUrl: 'images/masjd_icon.gif',
+
+                    iconSize:     [35, 40], // size of the icon
+                    iconAnchor:   [22, 16], // point of the icon which will correspond to marker's location
+                    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+                    });
+                    L.marker([-6.170859, 39.224161], {icon: mosqueIcon}).addTo(map).bindPopup('<b>Omar ibn Al-Khattab Mosque</b> <div><img style="width:100%" src="images/masjd.png" alt="image" /></div>',
+                    {minWidth:256}
+                    );
+
+                    var pinkIcon = L.icon({
+                    iconUrl: 'images/hospital.png',
+
+                    iconSize:     [28, 40], // size of the icon
+                    iconAnchor:   [22, 16], // point of the icon which will correspond to marker's location
+                    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+                    });
+                    
+                    L.marker([-6.172054, 39.224049], {icon: pinkIcon}).addTo(map).bindPopup('<b>Al-Tabib Dispensary</b> <div><img style="width:100%" src="images/disp.jpg" alt="image" /></div>',
+                    {minWidth:256}
+                    );
+
+                    var stadiumIcon = L.icon({
+                    iconUrl: 'images/stadium.png',
+
+                    iconSize:     [28, 40], // size of the icon
+                    iconAnchor:   [22, 16], // point of the icon which will correspond to marker's location
+                    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+                    });
+                    
+                    L.marker([-6.165964, 39.223821], {icon: stadiumIcon}).addTo(map).bindPopup('<b>Amaan Stadium - Zanzibar</b> <div><img style="width:100%" src="images/amani.jpg" alt="image" /></div>',
+                    {minWidth:256}
+                    );
+
+
+	
+	
+	
+</script>
+
+					<!--- Layer Group --->
+					
+					
+				
+				
+				
+				<!--- Slide Bar --->
+				<div id="sidebar">
+					<h1>Zanzibar City</h1>
+
+					<p>Proximity areas that experienced with floods <a href="https://www.google.com/maps/@-6.1667587,39.2201347,785m/data=!3m1!1e3/">Nyerere Street, Zanzibar.</a></p>
+
+					<p><b>Proximity of Hazard and Risk areas of Floods.</b></p>
+
+					<p class="lorem">Flood risk is a combination of the probability (likelihood or chance) of an event happening and the consequences (impact) if it occurred. Flood risk is dependent on there being a source of flooding, such as a river, a route for the flood water to take (pathway), and something that is affected by the flood (receptor), such as a housing estate.
+						Flood hazard is focused on the estimate of annual maximum discharges for different non exceedance probabilities and establishment of the corresponding flooding area and specific parameters of flood (water level, flow velocity, etc.).
+
+						We will analysis of expected negative consequences of floods is based on the concept of vulnerability of social, economic and environmental systems.
+
+						“Risk is the expected loss (of lives, persons injured, property damaged, and economic activity disrupted) due to a particular hazard for a given area and reference period “
+
+						“Vulnerability is defined as the degree of loss to a given element at risk (or set of elements) resulting from given hazard at a given severity level”
+					.</p>
+
+					<p><b>Our Objective:</b></p>
+					<p class="lorem">
+						The objective of our solution is to demonstrate the spatial data that will contain the estimated affected areas and warning sign that will be better understandable to the local communities and ward leaders.
+						
+					</p>
+
+					</div>
+				
+				<script src="L.Control.Sidebar.js"></script>
+				
+				
+				<script>
+
+						var sidebar = L.control.sidebar('sidebar', {
+							closeButton: true,
+							position: 'left'
+						});
+						map.addControl(sidebar);
+
+						setTimeout(function () {
+							sidebar.show();
+						}, 500);
+
+						var marker = L.marker([51.2, 7]).addTo(map).on('click', function () {
+							sidebar.toggle();
+						});
+
+						map.on('click', function () {
+							sidebar.hide();
+						})
+
+						sidebar.on('show', function () {
+							console.log('Sidebar will be visible.');
+						});
+
+						sidebar.on('shown', function () {
+							console.log('Sidebar is visible.');
+						});
+
+						sidebar.on('hide', function () {
+							console.log('Sidebar will be hidden.');
+						});
+
+						sidebar.on('hidden', function () {
+							console.log('Sidebar is hidden.');
+						});
+
+						L.DomEvent.on(sidebar.getCloseButton(), 'click', function () {
+							console.log('Close button clicked.');
+						});
+				</script>
+
+
+				<!---- Legend ---->
+				<style>
+
+
+						.legend {
+								position:absolute;
+								bottom:20px;
+								right:10px;
+								line-height: 18px;
+								color: #ffffff;
+								border-radius: 10px;
+								background: #35424a;
+								box-shadow: 0 0 15px rgba(0,0,0,0.2);
+								border-radius: 5px;
+								padding:10px;
+								width:150px;
+								font: 14px/16px Arial, Helvetica, sans-serif;
+								line-height: 18px;
+								}
+						.legend i {
+								width: 18px;
+								height: 18px;
+								float: left;
+								margin-right: 8px;
+								opacity: 0.7;
+								}
+						.legend img {
+								width: 20px;
+								height: 20px;
+								float: left;
+								margin-right: 8px;
+								}
+								
+								
+					</style>
+
+
+				<!--- Legend  -->
+
+				<div class="legend">
+					<div><strong><h4>Proximity Flood Risk</h4></strong></div>
+					<i style="background: #FF0000"></i><span>High Risk Area</span><br><br>
+					<i style="background: #FF7F00"></i><span>Medium Risk Area</span><br><br>
+					<i style="background: #93DB70"></i><span>Low Risk Area</span><br><br>
+					<img src="images/wpd.jpg"><span>Water Path</span>
+					<br>
+				</div>
+
+					<script>
+						var north = L.control({position: "topright"});
+						north.onAdd = function(map) {
+							var div = L.DomUtil.create("div");
+							div.innerHTML = '<img src="images/noorth.jpg" style="width:50px">';
+							return div;
+						}
+						north.addTo(map);
+					</script>
+
+			</div>
+
+	</div>
+
+</center>
+</body>
+
+
+</html>
+
+
